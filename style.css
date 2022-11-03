@@ -98,7 +98,8 @@ body {
 .action-btn {
   background-color: #fff;
   border: 0;
-  color: #dfdbdf;
+  /* color: #dfdbdf; */
+  color: rgba(138, 94, 94, 0.624);
   cursor: pointer;
   padding: 10px;
   margin: 0 20px;
