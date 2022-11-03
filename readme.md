@@ -11,3 +11,11 @@ Create beautiful UI to play music stored in the "music folder" using the HTML5 a
 - Current time and Duration of song
 
 Live - https://nirbhay-codes.github.io/music-player/
+
+TODO -
+
+- add a volume slider
+- add a playlist
+  - add songs to playlist
+  - remove songs to playlist
+  - save to localstorage
