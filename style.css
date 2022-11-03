@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+    0deg,
+    rgba(247, 247, 247, 1) 23.8%,
+    rgba(252, 221, 221, 1) 92%
+  );
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+}
+
+.music-container {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
+  display: flex;
+  padding: 20px 30px;
+  position: relative;
+  margin: 100px 0;
+  z-index: 10;
+  /* Note: size of this music-container is defined by the size of its child elements. */
+}
+
+.img-container {
+  /* Note: position: relative; is required to change it from the default position: static */
+  position: relative;
+  width: 110px;
+}
+
+/* Note: Go over this again... */
+.img-container::after {
+  content: '';
+  background-color: #fff;
+  border-radius: 50%;
+
+  /* Note: "position: absolute" will position the element relative to the parent div 'music-container'. Without any translate() values and any positional values (like top, left, right, bottom) the element will be placed in the top left corner wrt the parent 'music-container' element.*/
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+
+  /* Below is the original values used to center a circle on the image cover.
+  bottom: 100%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, 50%); */
+}
+
+.img-container img {
+  border-radius: 50%;
+  object-fit: cover;
+  height: 110px;
+  /* Note: Below 'inherit' property allows the img element to take the same width as its parent 'img-container'*/
+  width: inherit;
+  /* Note: position: absolute; is used to position this img element, relative to the parent 'img-container' */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: rotate 5s linear infinite;
+
+  animation-play-state: paused;
+}
+
+.music-container.play .img-container img {
+  animation-play-state: running;
+}
+
+/* Note: 'rotate' is the identifier used in the animation declaration above*/
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.action-btn {
+  background-color: #fff;
+  border: 0;
+  color: #dfdbdf;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+/* Note: here the below specifier is different from other places where we select a class and then select the element under that. To style a child class we need to mention the parent class followed by child class and only separated by a dot "."*/
+.action-btn.action-btn-big {
+  color: #cdc2d0;
+  /* Note: to change the size of a button we need to change the font-size attribute */
+  font-size: 30px;
+}
+
+.action-btn:focus {
+  outline: 0;
+}
+
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+
+  /* Note: below 'left: 20px' is to position the 'music-info' panel at 20px to the right of the parent 'music-container'. i.e. the start of the parent is the start of the child with the absolute positioning. */
+  left: 20px;
+
+  /* Note: below we use calc() to get the width, here we minus 40px as already we are 20px from the left end and by giving 40px we are saying cut another 20px from the right end. */
+  width: calc(100% - 40px);
+
+  /* Note: padding of 150px is given on the left side so that the song title and progress bar start after the image */
+  padding: 10px 10px 10px 150px;
+
+  /* Note: opacity ranges between 0 and 1. 1 being opaque. */
+  opacity: 0;
+
+  /* Note: - 'transform' with translateY(0%) needs to be defined here so that later in the 'play' styling we can assign the translateY(-100%) to push it up by 100% of its height. 
+  /        - The 'transform' is like "what"
+  /       - 'transition' is required to define the details or the "hows" of the 'transform' */
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+/* Note: We will be toggling the "play" part of the 'music-container' to signify that the music is playing and it will apply the below styling */
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.music-info h4 {
+  margin: 0;
+}
+
+.time-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 10px 0 10px 0;
+}
+
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+
+.progress {
+  background-color: #fe8daa;
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+}
