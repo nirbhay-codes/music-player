@@ -9,3 +9,5 @@ Create beautiful UI to play music stored in the "music folder" using the HTML5 a
 - Switch songs
 - Progress bar
 - Current time and Duration of song
+
+Live - https://nirbhay-codes.github.io/music-player/
