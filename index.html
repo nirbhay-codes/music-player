@@ -12,39 +12,40 @@
     <title>Music Player</title>
   </head>
   <body>
-    <h1>Music Player</h1>
-
-    <div class="music-container" id="music-container">
-      <!-- Music info panel -->
-      <div class="music-info">
-        <h4 id="title">song title</h4>
-        <div class="time-container">
-          <div class="currTime" id="currTime"></div>
-          <div class="durTime" id="durTime"></div>
+    <div class="base-container">
+      <h1>Music Player</h1>
+      <div class="music-container" id="music-container">
+        <!-- Music info panel -->
+        <div class="music-info">
+          <h4 id="title">song title</h4>
+          <div class="time-container">
+            <div class="currTime" id="currTime"></div>
+            <div class="durTime" id="durTime"></div>
+          </div>
+          <div class="progress-container" id="progress-container">
+            <div class="progress" id="progress"></div>
+          </div>
         </div>
-        <div class="progress-container" id="progress-container">
-          <div class="progress" id="progress"></div>
+
+        <!-- Audio element (this is not shown on the UI as 'controls' is not added. We will create our own audio controller.) -->
+        <audio src="" id="audio"></audio>
+
+        <!-- Image container -->
+        <div class="img-container">
+          <img src="images/ukulele.jpg" alt="music-cover" id="cover" />
         </div>
-      </div>
-
-      <!-- Audio element (this is not shown on the UI as 'controls' is not added. We will create our own audio controller.) -->
-      <audio src="" id="audio"></audio>
-
-      <!-- Image container -->
-      <div class="img-container">
-        <img src="images/ukulele.jpg" alt="music-cover" id="cover" />
-      </div>
-      <!-- Navigation -->
-      <div class="navigation">
-        <button id="prev" class="action-btn">
-          <i class="fas fa-backward"></i>
-        </button>
-        <button id="play" class="action-btn action-btn-big">
-          <i class="fas fa-play"></i>
-        </button>
-        <button id="next" class="action-btn">
-          <i class="fas fa-forward"></i>
-        </button>
+        <!-- Navigation -->
+        <div class="navigation">
+          <button id="prev" class="action-btn">
+            <i class="fas fa-backward"></i>
+          </button>
+          <button id="play" class="action-btn action-btn-big">
+            <i class="fas fa-play"></i>
+          </button>
+          <button id="next" class="action-btn">
+            <i class="fas fa-forward"></i>
+          </button>
+        </div>
       </div>
     </div>
 

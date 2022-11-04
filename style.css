@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Comfortaa:wght@700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -15,8 +16,28 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   margin: 0;
+}
+
+.base-container {
+  /* background-color: rgba(255, 255, 255, 0.77); */
+  box-shadow: 0px 0px 10px 0px rgba(199, 133, 133, 0.6);
+  background-image: linear-gradient(
+    90deg,
+    rgba(247, 247, 247, 1) 23.8%,
+    rgba(252, 221, 221, 1) 92%
+  );
+  padding: 0 10px 0 10px;
+  border-radius: 15px;
+}
+
+.base-container h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
 }
 
 .music-container {
@@ -26,7 +47,7 @@ body {
   display: flex;
   padding: 20px 30px;
   position: relative;
-  margin: 100px 0;
+  margin: 90px 0;
   z-index: 10;
   /* Note: size of this music-container is defined by the size of its child elements. */
 }
@@ -151,6 +172,11 @@ body {
   margin: 0;
 }
 
+.music-info .time-container {
+  margin: 0;
+  padding: 15px 0 0 0;
+}
+
 .time-container {
   display: flex;
   justify-content: space-between;
@@ -173,4 +199,33 @@ body {
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
+}
+
+@media screen and (max-width: 400px) {
+  .music-container {
+    /* height: 50vh; */
+    width: 90vw;
+  }
+
+  .img-container {
+    width: 80px;
+  }
+
+  .img-container img {
+    height: 80px;
+    width: inherit;
+  }
+
+  .img-container::after {
+    content: '';
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+
+    /* Note: "position: absolute" will position the element relative to the parent div 'music-container'. Without any translate() values and any positional values (like top, left, right, bottom) the element will be placed in the top left corner wrt the parent 'music-container' element.*/
+    position: absolute;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    transform: translate(25%, 50%);
+  }
 }

@@ -7,6 +7,8 @@ const audio = document.getElementById('audio');
 const cover = document.getElementById('cover');
 const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress');
+const currTimeEl = document.getElementById('currTime');
+const durTimeEl = document.getElementById('durTime');
 
 // Song titles
 const songs = ['hey', 'summer', 'ukulele'];
@@ -62,7 +64,7 @@ function nextSong() {
   playSong();
 }
 
-// Update progress bar
+// Update progress bar and the curr time and duration
 function updateProgress(e) {
   //   console.log('e.srcElement: ', e.srcElement);
   //   console.log('this: ', this);
@@ -81,7 +83,36 @@ function updateProgress(e) {
   const progressPercent = (currentTime / duration) * 100;
 
   // Note: we can directly access the css class of the progress div class using 'style'
+  // Update progress bar width
   progress.style.width = `${progressPercent}%`;
+
+  // Set current time and duration elements
+  console.log('currentTime: ', currentTime);
+  console.log('duration: ', duration);
+
+  // get duration min
+  let durMin = Math.floor(duration / 60);
+
+  // get duration secs
+  let durSec = Math.floor(duration) % 60;
+  if (durSec < 10) {
+    durSec = `0${durSec}`;
+  }
+
+  // get currTime min
+  let curMin = Math.floor(currentTime / 60);
+
+  //get currTime secs
+  let curSec = Math.floor(currentTime) % 60;
+  if (curSec < 10) {
+    curSec = `0${curSec}`;
+  }
+
+  // Wait for the time elements to be calculated to avoid NaN on screen.
+  if (curMin >= 0 && durMin >= 0) {
+    currTimeEl.innerText = `${curMin}:${curSec}`;
+    durTimeEl.innerText = `${durMin}:${durSec}`;
+  }
 }
 
 function setProgress(e) {
@@ -94,8 +125,9 @@ function setProgress(e) {
   const clickX = e.offsetX;
   const duration = audio.duration;
 
-  const percent = (clickX / width) * duration;
-  audio.currentTime = percent;
+  // * duration gives us the seconds into the song.
+  const secIntoSong = (clickX / width) * duration;
+  audio.currentTime = secIntoSong;
 }
 
 playBtn.addEventListener('click', () => {
