@@ -12,6 +12,8 @@ Create beautiful UI to play music stored in the "music folder" using the HTML5 a
 
 Live - https://nirbhay-codes.github.io/music-player/
 
+Live Netlify - https://calm-marigold-5fc563.netlify.app/
+
 TODO -
 
 - add a volume slider
